@@ -2,15 +2,19 @@ const express = require("express");
 const dotenv = require('dotenv');
 const { dbSync } = require('./config/database');
 const userRoutes = require('./routes/user.route');
+const hubRoutes = require('./routes/hub.route');
+const coordinateRoutes = require('./routes/coordinate.route');
 const bodyParser = require("body-parser");
 const cors = require('cors');
 dotenv.config();
 
 const app = express();
-const port = 3000;
 app.use(cors());
+const port = 3000;
 app.use(bodyParser.json());
 app.use('/api/users', userRoutes);
+app.use('/api/hubs', hubRoutes);
+app.use('/api/coordinates', coordinateRoutes);
 
 const main = async () => {
   await dbSync();

@@ -28,11 +28,6 @@ class UserController {
 
     async deleteUser(req, res) {
         const { userId } = req.params;
-        const userIndex = this.users.findIndex(user => user.id == userId);
-
-        if (userIndex === -1) {
-            return res.status(404).json({ error: 'User not found' });
-        }
 
         return res.status(204).send();
     }
@@ -50,6 +45,15 @@ class UserController {
             return res.status(200).json(user);
         } catch (error) {
             return res.status(500).json({ error: `Error finding user: ${error.message}` });
+        }
+    }
+    async getAllUsers(req, res) {
+        try {
+            const users = await UserService.getAllUsers();
+
+            return res.status(200).json(users);
+        } catch (error) {
+            return res.status(500).json({ error: `Error finding coordinate: ${error.message}` });
         }
     }
 }
