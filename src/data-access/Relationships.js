@@ -9,15 +9,13 @@ const { Users } = require('./Users');
 const setRelationships = async () => {
     Users.belongsToMany(Users, { as: 'Friends', through: UserFriends, foreignKey: 'userId', otherKey: 'friendId' });
 
-    Stations.hasMany(Users, {
-        foreignKey: 'userId',
-        as: 'user'
-    });
-
     Users.belongsToMany(Badges, { through: 'UserBadges', foreignKey: 'userId' });
     Badges.belongsToMany(Users, { through: 'UserBadges', foreignKey: 'badgeId' });
 
-    Hubs.hasMany(Stations, { foreignKey: 'hubId' });
+    Stations.hasMany(Users, { foreignKey: 'userId' });
+    Users.belongsTo(Stations, { foreignKey: 'stationId' });
+
+    Hubs.hasMany(Stations, { foreignKey: 'stationId' });
     Stations.belongsTo(Hubs, { foreignKey: 'hubId' });
 
     Hubs.belongsToMany(Users, { through: 'HubAttendees', foreignKey: 'hubId' });

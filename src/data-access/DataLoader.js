@@ -3,6 +3,7 @@ const { Coordinates, User } = require("./Coordinates");
 const { HubAttendees } = require("./HubAttendees");
 const { Hubs } = require("./Hubs");
 const { HubStations } = require("./HubStations");
+const { StationPlayers } = require("./StationPlayers");
 const { Stations } = require("./Stations");
 const { UserBadges } = require("./UserBadges");
 const { UserFriends } = require("./UserFriends");
@@ -379,14 +380,22 @@ async function loadHubsData() {
                     game: hubStation.game,
                     maxPlayers: hubStation.maxPlayers,
                     currPlayers: hubStation.currPlayers,
+                    hubId: id
                 });
 
                 const station = await Stations.findOne({
                     where: {
-                        stationId: hubStation.stationId
+                        stationId: hubStation.stationId,
+                        hubId: id
                     }
                 });
+                for (const player of hubStation.players) {
 
+                    await StationPlayers.create({
+                        stationId: station.id,
+                        userId: player
+                    })
+                }
                 await HubStations.create({
                     hubId: parseInt(id),
                     stationId: station.id

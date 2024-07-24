@@ -7,8 +7,7 @@ class UserController {
 
     async createUser(req, res) {
         const { name, lvl, avatar, avatarBg, coordId } = req.body;
-        const newUser = new User(name, lvl, avatar, avatarBg, coordId);
-        await UserService.createUser(newUser);
+        await UserService.createUser(name, lvl, avatar, avatarBg, coordId);
         return res.status(201).json(newUser);
     }
 
