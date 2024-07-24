@@ -442,6 +442,7 @@ async function loadCoordinates() {
             const user = await Users.findByPk(parseInt(userId));
             if (user) {
                 await user.update({ coordId: coordinates.id });
+                await coordinates.update({ UserId: user.id });
             } else {
                 console.warn(`User with ID ${userId} not found. Skipping coordinates.`);
             }
@@ -452,6 +453,8 @@ async function loadCoordinates() {
             const hub = await Hubs.findByPk(parseInt(hubId));
             if (hub) {
                 await hub.update({ coordId: coordinates.id });
+                await coordinates.update({ HubId: hub.id });
+
 
             } else {
                 console.warn(`Hub with ID ${hubId} not found. Skipping coordinates.`);
