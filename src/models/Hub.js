@@ -13,6 +13,7 @@ class Hub {
         this.about = about;
         this.coordId = coordId;
         this.attendees = attendees;
+        this.stations = stations;
     }
 }
 module.exports = { Hub };

@@ -1,3 +1,5 @@
+const { Badges } = require('../data-access/Badges');
+const { UserBadges } = require('../data-access/UserBadges');
 const { UserFriends } = require('../data-access/UserFriends');
 const { Users } = require('../data-access/Users');
 const User = require('../models/user');
@@ -42,6 +44,8 @@ class UserService {
                 throw new Error('User not found');
             }
             await this.loadFriendsToUser(user);
+            await this.loadBadgesToUser(user);
+
             return user;
         } catch (error) {
             throw new Error(`Error finding user: ${error.message}`);
@@ -52,7 +56,8 @@ class UserService {
         try {
             const users = await Users.findAll();
             for (let usersIndex = 0; usersIndex < users.length; usersIndex++) {
-                this.loadFriendsToUser(users[usersIndex]);
+                await this.loadFriendsToUser(users[usersIndex]);
+                await this.loadBadgesToUser(users[usersIndex]);
             }
             return users;
         } catch (error) {
@@ -70,6 +75,26 @@ class UserService {
             userToFill.dataValues.friends = friends.map(friend => friend.friendId)
         } catch (error) {
             throw new Error(`Error finding friends: ${error.message}`);
+        }
+    }
+    async loadBadgesToUser(userToFill) {
+        try {
+            const userBadges = await UserBadges.findAll({
+                where: {
+                    userId: userToFill.id
+                }
+            });
+
+            userToFill.dataValues.badges = [];
+
+            for (const userBadge of userBadges) {
+                const badge = await Badges.findByPk(userBadge.badgeId);
+                if (badge) {
+                    userToFill.dataValues.badges.push(badge.name);
+                }
+            }
+        } catch (error) {
+            throw new Error(`Error finding badges: ${error.message}`);
         }
     }
 

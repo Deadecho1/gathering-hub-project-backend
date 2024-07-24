@@ -1,7 +1,9 @@
 const { HubAttendees } = require('../data-access/HubAttendees');
 const { Hubs } = require('../data-access/Hubs');
+const { HubStations } = require('../data-access/HubStations');
 const Hub = require('../models/hub');
 const userService = require('./user.service');
+const stationService = require('./station.service');
 
 class HubService {
     constructor() {
@@ -42,6 +44,8 @@ class HubService {
             if (!hub) {
                 throw new Error('Hub not found');
             }
+            await this.loadAttendeesToHub(hub);
+            await this.loadStationsToHub(hub);
             return hub;
         } catch (error) {
             throw new Error(`Error finding hub: ${error.message}`);
@@ -51,11 +55,13 @@ class HubService {
         try {
             const hubs = await Hubs.findAll();
             for (let hubIndex = 0; hubIndex < hubs.length; hubIndex++) {
-                this.loadAttendeesToHub(hubs[hubIndex]);
+                await this.loadAttendeesToHub(hubs[hubIndex]);
+                await this.loadStationsToHub(hubs[hubIndex]);
+
             }
             return hubs;
         } catch (error) {
-            throw new Error(`Error finding coordinate: ${error.message}`);
+            throw new Error(`Error finding hub: ${error.message}`);
         }
     }
     async loadAttendeesToHub(hubToFill) {
@@ -64,16 +70,31 @@ class HubService {
                 hubId: hubToFill.id
             }
         });
+        hubToFill.dataValues.attendees = [];
+
         for (let attendeesIndex = 0; attendeesIndex < hubAttendees.length; attendeesIndex++) {
             const hubAttendee = hubAttendees[attendeesIndex];
             const attendee = await userService.findUserById(hubAttendee.userId)
             if (attendee) {
-                if (hubToFill.dataValues.attendees) {
-                    hubToFill.dataValues.attendees.push(attendee)
-                }
-                else {
-                    hubToFill.dataValues.attendees = [attendee]
-                }
+                hubToFill.dataValues.attendees.push(attendee)
+
+            }
+        }
+    }
+    async loadStationsToHub(hubToFill) {
+        var hubAttendees = await HubStations.findAll({
+            where: {
+                hubId: hubToFill.id
+            }
+        });
+        hubToFill.dataValues.stations = [];
+
+        for (let stationIndex = 0; stationIndex < hubAttendees.length; stationIndex++) {
+            const hubStation = hubAttendees[stationIndex];
+            const station = await stationService.findStationById(hubStation.stationId)
+            if (station) {
+                hubToFill.dataValues.stations.push(station)
+
             }
         }
     }
