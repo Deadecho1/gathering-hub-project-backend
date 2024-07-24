@@ -4,6 +4,7 @@ const { dbSync } = require('./config/database');
 const userRoutes = require('./routes/user.route');
 const hubRoutes = require('./routes/hub.route');
 const coordinateRoutes = require('./routes/coordinate.route');
+const stationRoutes = require('./routes/station.route');
 const bodyParser = require("body-parser");
 const cors = require('cors');
 dotenv.config();
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 app.use('/api/users', userRoutes);
 app.use('/api/hubs', hubRoutes);
 app.use('/api/coordinates', coordinateRoutes);
+app.use('/api/stations', stationRoutes);
 
 const main = async () => {
   await dbSync();
