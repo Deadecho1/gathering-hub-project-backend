@@ -6,40 +6,57 @@ class HubController {
     }
 
     async createHub(req, res) {
-        const { id, name, badge, openingHour, closingHour, mapCoordinates, location, rating, phone, avatar, about, coordId } = req.body;
-        const newHub = new Hub(id, name, badge, openingHour, closingHour, mapCoordinates, location, rating, phone, avatar, about, coordId);
-        await HubService.createHub(newHub);
-        return res.status(201).json(newHub);
+        try {
+            const { id, name, badge, openingHour, closingHour, mapCoordinates, location, rating, phone, avatar, about, coordId, ownerId } = req.body;
+            const newHub = new Hub(id, name, badge, openingHour, closingHour, mapCoordinates, location, rating, phone, avatar, about, coordId, ownerId);
+            await HubService.createHub(newHub);
+            return res.status(201).json(newHub);
+        }
+        catch (error) {
+            return res.status(500).json({ error: `Error creating hub: ${error.message}` });
+        }
     }
 
     async updateHub(req, res) {
-        const { hubId } = req.params;
-        if (!hubId || isNaN(hubId)) {
-            return res.status(400).json({ error: 'Invalid or missing hubId parameter' });
-        }
-        const hubReference = await HubService.findHubById(hubId);
+        try {
+            const { hubId } = req.params;
+            if (!hubId || isNaN(hubId)) {
+                return res.status(400).json({ error: 'Invalid or missing hubId parameter' });
+            }
+            const hubReference = await HubService.findHubById(hubId);
 
-        if (!hubReference) {
-            return res.status(404).json({ error: 'Hub not found' });
-        }
-        const { id, name, badge, openingHour, closingHour, mapCoordinates, location, rating, phone, avatar, about, coordId } = req.body;
-        const hubToUpdate = { id, name, badge, openingHour, closingHour, mapCoordinates, location, rating, phone, avatar, about, coordId };
-        await HubService.updateHub(hubToUpdate, hubReference);
+            if (!hubReference) {
+                return res.status(404).json({ error: 'Hub not found' });
+            }
+            const { id, name, badge, openingHour, closingHour, mapCoordinates, location, rating, phone, avatar, about, coordId } = req.body;
+            const hubToUpdate = { id, name, badge, openingHour, closingHour, mapCoordinates, location, rating, phone, avatar, about, coordId };
+            await HubService.updateHub(hubToUpdate, hubReference);
 
-        return res.status(200).json(hubToUpdate);
+            return res.status(200).json(hubToUpdate);
+        }
+
+        catch (error) {
+            return res.status(500).json({ error: `Error updating hub: ${error.message}` });
+        }
     }
 
     async deleteHub(req, res) {
-        const { hubId } = req.params;
-        if (!hubId || isNaN(hubId)) {
-            return res.status(400).json({ error: 'Invalid or missing hubId parameter' });
+        try {
+            const { hubId } = req.params;
+            if (!hubId || isNaN(hubId)) {
+                return res.status(400).json({ error: 'Invalid or missing hubId parameter' });
+            }
+            const hubReference = await HubService.findHubById(hubId);
+            if (!hubReference) {
+                return res.status(404).json({ error: 'Hub not found' });
+            }
+            hubReference.destroy();
+            return res.status(204).send();
         }
-        const hubReference = await HubService.findHubById(hubId);
-        if (!hubReference) {
-            return res.status(404).json({ error: 'Hub not found' });
+
+        catch (error) {
+            return res.status(500).json({ error: `Error deleting hub: ${error.message}` });
         }
-        hubReference.destroy();
-        return res.status(204).send();
     }
 
 

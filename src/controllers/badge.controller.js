@@ -1,4 +1,3 @@
-const Badge = require('../models/Badge');
 const BadgeService = require('../services/badge.service');
 
 class BadgeController {
@@ -6,18 +5,18 @@ class BadgeController {
     }
 
     async createBadge(req, res) {
-        const { name } = req.body;
-        await BadgeService.createBadge(name);
-        return res.status(201).json(newBadge);
+        try {
+            const { name } = req.body;
+            await BadgeService.createBadge(name);
+            return res.status(201).json(newBadge);
+        }
+
+        catch (error) {
+            return res.status(500).json({ error: `Error creating badge: ${error.message}` });
+        }
     }
 
 
-
-    async deleteBadge(req, res) {
-        const { badgeId } = req.params;
-
-        return res.status(204).send();
-    }
 
     async findBadgeById(req, res) {
         try {
@@ -41,7 +40,7 @@ class BadgeController {
 
             return res.status(200).json(badges);
         } catch (error) {
-            return res.status(500).json({ error: `Error finding coordinate: ${error.message}` });
+            return res.status(500).json({ error: `Error finding badges: ${error.message}` });
         }
     }
 }
