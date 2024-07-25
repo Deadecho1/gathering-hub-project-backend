@@ -44,8 +44,10 @@ async function loadUsersAndFriends() {
             "avatar": "angel",
             "avatarBg": "cherry-pink",
             "friends": [2],
-            "badges": ["fire"]
-
+            "badges": ["fire"],
+            "password": "12345",
+            "username": "MATAN2008",
+            "role": "admin"
         },
         "2": {
             "name": "Benthehero1",
@@ -53,7 +55,10 @@ async function loadUsersAndFriends() {
             "avatar": "hero",
             "avatarBg": "city-night",
             "friends": [4],
-            "badges": []
+            "badges": [],
+            "password": "12345",
+            "username": "Benthehero1",
+            "role": "user"
         },
         "3": {
             "name": "Gandalf2",
@@ -61,7 +66,10 @@ async function loadUsersAndFriends() {
             "avatar": "mage",
             "avatarBg": "cherry-pink",
             "friends": [4, 5],
-            "badges": []
+            "badges": [],
+            "password": "12345",
+            "username": "Gandalf2",
+            "role": "user"
 
 
         },
@@ -71,7 +79,10 @@ async function loadUsersAndFriends() {
             "avatar": "princess",
             "avatarBg": "cherry-pink",
             "friends": [3],
-            "badges": []
+            "badges": [],
+            "password": "12345",
+            "username": "Jessy2",
+            "role": "user"
 
         },
         "5": {
@@ -80,7 +91,10 @@ async function loadUsersAndFriends() {
             "avatar": "mage",
             "avatarBg": "city-night",
             "friends": [3],
-            "badges": []
+            "badges": [],
+            "password": "12345",
+            "username": "Poopo",
+            "role": "user"
 
         }
     }
@@ -92,6 +106,9 @@ async function loadUsersAndFriends() {
                 lvl: user.lvl,
                 avatar: user.avatar,
                 avatarBg: user.avatarBg,
+                username: user.username,
+                password: user.password,
+                role: user.role,
             });
             for (const badgeName of user.badges) {
                 const badge = await Badges.findOne({
@@ -137,7 +154,7 @@ async function loadHubsData() {
             "avatar": "castle",
             "stations": [
                 {
-                    "stationId": "station 1",
+                    "stationName": "station 1",
                     "platform": "switch",
                     "game": "ssbu",
                     "maxPlayers": 4,
@@ -145,7 +162,7 @@ async function loadHubsData() {
                     "players": []
                 },
                 {
-                    "stationId": "station 2",
+                    "stationName": "station 2",
                     "platform": "xbox",
                     "game": "",
                     "maxPlayers": 4,
@@ -153,7 +170,7 @@ async function loadHubsData() {
                     "players": []
                 },
                 {
-                    "stationId": "station 3",
+                    "stationName": "station 3",
                     "platform": "xbox",
                     "game": "party_animals",
                     "maxPlayers": 8,
@@ -176,7 +193,7 @@ async function loadHubsData() {
             "avatar": "chinese",
             "stations": [
                 {
-                    "stationId": "station 1",
+                    "stationName": "station 1",
                     "platform": "switch",
                     "game": "ssbu",
                     "maxPlayers": 4,
@@ -184,7 +201,7 @@ async function loadHubsData() {
                     "players": []
                 },
                 {
-                    "stationId": "station 2",
+                    "stationName": "station 2",
                     "platform": "xbox",
                     "game": "",
                     "maxPlayers": 4,
@@ -192,7 +209,7 @@ async function loadHubsData() {
                     "players": []
                 },
                 {
-                    "stationId": "station 3",
+                    "stationName": "station 3",
                     "platform": "xbox",
                     "game": "party_animals",
                     "maxPlayers": 8,
@@ -215,7 +232,7 @@ async function loadHubsData() {
             "avatar": "chinese",
             "stations": [
                 {
-                    "stationId": "station 1",
+                    "stationName": "station 1",
                     "platform": "switch",
                     "game": "ssbu",
                     "maxPlayers": 4,
@@ -223,7 +240,7 @@ async function loadHubsData() {
                     "players": []
                 },
                 {
-                    "stationId": "station 2",
+                    "stationName": "station 2",
                     "platform": "xbox",
                     "game": "",
                     "maxPlayers": 4,
@@ -231,7 +248,7 @@ async function loadHubsData() {
                     "players": []
                 },
                 {
-                    "stationId": "station 3",
+                    "stationName": "station 3",
                     "platform": "xbox",
                     "game": "party_animals",
                     "maxPlayers": 8,
@@ -267,7 +284,7 @@ async function loadHubsData() {
             "avatar": "chinese",
             "stations": [
                 {
-                    "stationId": "station 1",
+                    "stationName": "station 1",
                     "platform": "switch",
                     "game": "ssbu",
                     "maxPlayers": 4,
@@ -275,7 +292,7 @@ async function loadHubsData() {
                     "players": [2, 3, 4, 5]
                 },
                 {
-                    "stationId": "station 2",
+                    "stationName": "station 2",
                     "platform": "xbox",
                     "game": "",
                     "maxPlayers": 4,
@@ -283,7 +300,7 @@ async function loadHubsData() {
                     "players": []
                 },
                 {
-                    "stationId": "station 3",
+                    "stationName": "station 3",
                     "platform": "xbox",
                     "game": "party_animals",
                     "maxPlayers": 8,
@@ -291,7 +308,7 @@ async function loadHubsData() {
                     "players": []
                 },
                 {
-                    "stationId": "station 4",
+                    "stationName": "station 4",
                     "platform": "pc",
                     "game": "lol",
                     "maxPlayers": 1,
@@ -299,7 +316,7 @@ async function loadHubsData() {
                     "players": []
                 },
                 {
-                    "stationId": "station 5",
+                    "stationName": "station 5",
                     "platform": "switch",
                     "game": "",
                     "maxPlayers": 2,
@@ -307,7 +324,7 @@ async function loadHubsData() {
                     "players": []
                 },
                 {
-                    "stationId": "station 6",
+                    "stationName": "station 6",
                     "platform": "xbox",
                     "game": "",
                     "maxPlayers": 4,
@@ -330,7 +347,7 @@ async function loadHubsData() {
             "avatar": "castle",
             "stations": [
                 {
-                    "stationId": "station 1",
+                    "stationName": "station 1",
                     "platform": "switch",
                     "game": "ssbu",
                     "maxPlayers": 4,
@@ -338,7 +355,7 @@ async function loadHubsData() {
                     "players": []
                 },
                 {
-                    "stationId": "station 2",
+                    "stationName": "station 2",
                     "platform": "xbox",
                     "game": "",
                     "maxPlayers": 4,
@@ -346,7 +363,7 @@ async function loadHubsData() {
                     "players": []
                 },
                 {
-                    "stationId": "station 3",
+                    "stationName": "station 3",
                     "platform": "xbox",
                     "game": "party_animals",
                     "maxPlayers": 8,
@@ -370,12 +387,13 @@ async function loadHubsData() {
                 rating: hub.rating,
                 phone: hub.phone,
                 avatar: hub.avatar,
-                about: hub.about
+                about: hub.about,
+                ownerId: 1
             });
 
             for (const hubStation of hub.stations) {
                 await Stations.create({
-                    stationId: hubStation.stationId,
+                    stationName: hubStation.stationName,
                     platform: hubStation.platform,
                     game: hubStation.game,
                     maxPlayers: hubStation.maxPlayers,
@@ -385,7 +403,7 @@ async function loadHubsData() {
 
                 const station = await Stations.findOne({
                     where: {
-                        stationId: hubStation.stationId,
+                        stationName: hubStation.stationName,
                         hubId: id
                     }
                 });

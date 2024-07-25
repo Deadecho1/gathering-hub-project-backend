@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 const { sequelizeInit } = require('../config/database');
 
 const Stations = sequelizeInit.define('Stations', {
-    stationId: {
+    stationName: {
         type: DataTypes.STRING,
     },
     platform: {

@@ -57,6 +57,14 @@ const Hubs = sequelizeInit.define('Hubs', {
             model: 'Coordinates',
             key: 'id',
         }
+    },
+    ownerId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'Users',
+            key: 'id',
+        }
     }
 }, {
     tableName: 'Hubs',

@@ -12,7 +12,7 @@ const HubStations = sequelizeInit.define('HubStations', {
         allowNull: false
     },
     stationId: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
     }
 }, {
     tableName: 'HubStations',

@@ -1,13 +1,16 @@
-const { DataTypes, Sequelize } = require('sequelize');
+const { DataTypes } = require('sequelize');
 
 const { sequelizeInit } = require('../config/database');
-const { Coordinates } = require('./Coordinates');
 
 const Users = sequelizeInit.define('Users', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
+    },
+    username: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
     name: {
         type: DataTypes.STRING,
@@ -32,7 +35,15 @@ const Users = sequelizeInit.define('Users', {
             model: 'Coordinates',
             key: 'id',
         }
-    }
+    },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    role: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
 }, {
     tableName: 'Users',
     timestamps: false
