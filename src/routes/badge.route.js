@@ -7,8 +7,6 @@ badgeRouter.post('/', BadgeController.createBadge);
 
 badgeRouter.get('/all-badges', BadgeController.getAllBadges);
 
-badgeRouter.delete('/:badgeId', BadgeController.deleteBadge);
-
 badgeRouter.get('/:badgeId', BadgeController.findBadgeById);
 
 
