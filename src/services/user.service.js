@@ -2,20 +2,9 @@ const { Badges } = require('../data-access/Badges');
 const { UserBadges } = require('../data-access/UserBadges');
 const { UserFriends } = require('../data-access/UserFriends');
 const { Users } = require('../data-access/Users');
-const User = require('../models/user');
 
 class UserService {
     constructor() {
-    }
-
-    async createUser({ name, lvl, avatar, avatarBg, coordId }) {
-        try {
-            const newUser = new User(name, lvl, avatar, avatarBg, coordId);
-            await Users.create(newUser);
-            return newUser;
-        } catch (error) {
-            throw new Error(`Error creating user: ${error.message}`);
-        }
     }
 
     async updateUser(userToUpdate, userReference) {
@@ -42,6 +31,24 @@ class UserService {
             const user = await Users.findByPk(userId)
             if (!user) {
                 throw new Error('User not found');
+            }
+            await this.loadFriendsToUser(user);
+            await this.loadBadgesToUser(user);
+
+            return user;
+        } catch (error) {
+            throw new Error(`Error finding user: ${error.message}`);
+        }
+    }
+    async findUserByUsername(username) {
+        try {
+            const user = await Users.findOne({
+                where: {
+                    username: username
+                }
+            });
+            if (!user) {
+                return null;
             }
             await this.loadFriendsToUser(user);
             await this.loadBadgesToUser(user);
