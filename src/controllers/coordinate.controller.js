@@ -1,4 +1,3 @@
-const Coordinate = require('../models/Coordinate');
 const CoordinateService = require('../services/coordinate.service');
 
 class CoordinateController {
@@ -6,10 +5,14 @@ class CoordinateController {
     }
 
     async createCoordinate(req, res) {
-        const { longitude, latitude } = req.body;
-        const newCoordinate = new Coordinate(longitude, latitude);
-        await CoordinateService.createCoordinate(newCoordinate);
-        return res.status(201).json(newCoordinate);
+        try {
+            const { longitude, latitude } = req.body;
+            await CoordinateService.createCoordinate(longitude, latitude);
+            return res.status(201).json(newCoordinate);
+        } catch (error) {
+            return res.status(500).json({ error: `Error creating coordinate: ${error.message}` });
+        }
+
     }
 
     async updateCoordinate(req, res) {
@@ -26,13 +29,6 @@ class CoordinateController {
         return res.status(200).json(coordinateToUpdate);
     }
 
-    async deleteCoordinate(req, res) {
-        const { coordinateId } = req.params;
-
-
-
-        return res.status(204).send();
-    }
 
     async findCoordinateById(req, res) {
         try {
@@ -98,22 +94,7 @@ class CoordinateController {
             return res.status(500).json({ error: `Error finding coordinate: ${error.message}` });
         }
     }
-    async findCoordinateByUserId(req, res) {
-        try {
-            const { userId } = req.params;
-            if (!userId || isNaN(userId)) {
-                return res.status(400).json({ error: 'Invalid or missing userId parameter' });
-            }
 
-            const coordinate = await CoordinateService.findCoordinateById(userId);
-            if (!coordinate) {
-                return res.status(404).json({ error: 'Coordinate not found' });
-            }
-            return res.status(200).json(coordinate);
-        } catch (error) {
-            return res.status(500).json({ error: `Error finding coordinate: ${error.message}` });
-        }
-    }
     async getAllUserCoordinates(req, res) {
         try {
             const coordinates = await CoordinateService.getAllUserCoordinates();

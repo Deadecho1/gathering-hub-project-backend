@@ -1,15 +1,15 @@
 const { StationPlayers } = require('../data-access/StationPlayers');
 const { Stations } = require('../data-access/Stations');
-const Station = require('../models/station');
 const userService = require('./user.service');
+const { Station } = require('../models/Station');
 
 class StationService {
     constructor() {
     }
 
-    async createStation({ stationId, platform, game, maxPlayers, currPlayers, players }) {
+    async createStation(stationId, platform, game, maxPlayers, currPlayers, players, hubId) {
         try {
-            const newStation = new Station(stationId, platform, game, maxPlayers, currPlayers, players);
+            const newStation = new Station(stationId, platform, game, maxPlayers, currPlayers, players, hubId);
             await Stations.create(newStation);
             return newStation;
         } catch (error) {

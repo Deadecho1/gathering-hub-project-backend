@@ -5,7 +5,6 @@ const stationRouter = Router();
 
 stationRouter.post('/', StationController.createStation);
 
-
 stationRouter.put('/:stationId', StationController.updateStation);
 
 stationRouter.delete('/:stationId', StationController.deleteStation);

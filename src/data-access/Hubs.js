@@ -19,11 +19,11 @@ const Hubs = sequelizeInit.define('Hubs', {
         allowNull: false
     },
     openingHour: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
     },
     closingHour: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
     },
     mapCoordinates: {
@@ -35,7 +35,7 @@ const Hubs = sequelizeInit.define('Hubs', {
         allowNull: false
     },
     rating: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(5, 2),
         allowNull: false
     },
     phone: {
@@ -45,6 +45,10 @@ const Hubs = sequelizeInit.define('Hubs', {
     avatar: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    logo: {
+        type: DataTypes.STRING,
+        allowNull: true
     },
     about: {
         type: DataTypes.STRING,

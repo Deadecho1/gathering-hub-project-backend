@@ -6,8 +6,8 @@ class StationController {
 
     async createStation(req, res) {
         try {
-            const { stationName, platform, game, maxPlayers, currPlayers, players } = req.body;
-            await StationService.createStation(stationName, platform, game, maxPlayers, currPlayers, players);
+            const { stationName, platform, game, maxPlayers, currPlayers, hubId } = req.body;
+            const newStation = await StationService.createStation(stationName, platform, game, maxPlayers, currPlayers, [], hubId);
             return res.status(201).json(newStation);
         }
 

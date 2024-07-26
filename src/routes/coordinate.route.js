@@ -16,7 +16,6 @@ coordinateRouter.get('/user/:userId', CoordinateController.findCoordinateByUserI
 
 coordinateRouter.put('/:coordinateId', CoordinateController.updateCoordinate);
 
-coordinateRouter.delete('/:coordinateId', CoordinateController.deleteCoordinate);
 
 coordinateRouter.get('/:coordinateId', CoordinateController.findCoordinateById);
 

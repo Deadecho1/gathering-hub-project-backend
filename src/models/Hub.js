@@ -1,6 +1,5 @@
 class Hub {
-    constructor(id, name, badge, openingHour, closingHour, mapCoordinates, location, rating, phone, avatar, about, coordId, attendees,ownerId) {
-        this.id = id;
+    constructor(name, badge, openingHour, closingHour, mapCoordinates, location, rating, phone, avatar, logo, about, coordId, ownerId, attendees, stations) {
         this.name = name;
         this.badge = badge;
         this.openingHour = openingHour;
@@ -10,6 +9,7 @@ class Hub {
         this.rating = rating;
         this.phone = phone;
         this.avatar = avatar;
+        this.logo = logo;
         this.about = about;
         this.coordId = coordId;
         this.attendees = attendees;
@@ -18,7 +18,5 @@ class Hub {
     }
 }
 module.exports = { Hub };
-
-
 
 

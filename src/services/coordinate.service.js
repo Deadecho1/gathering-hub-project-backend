@@ -1,16 +1,25 @@
 const { Op } = require('sequelize');
 const { Coordinates } = require('../data-access/Coordinates');
+const { Coordinate } = require('../models/coordinate');
 
-const Coordinate = require('../models/coordinate');
 
 class CoordinateService {
     constructor() {
     }
 
-    async createCoordinate({ name, lvl, avatar, avatarBg, coordId }) {
+    async createHubCoordinate(longitude, latitude, hubId) {
         try {
-            const newCoordinate = new Coordinate(name, lvl, avatar, avatarBg, coordId);
-            await Coordinates.create(newCoordinate);
+            const coordinate = new Coordinate(latitude, longitude, hubId);
+            const newCoordinate = await Coordinates.create(coordinate);
+            return newCoordinate;
+        } catch (error) {
+            throw new Error(`Error creating coordinate: ${error.message}`);
+        }
+    }
+    async createUserCoordinate(longitude, latitude, userId) {
+        try {
+
+            const newCoordinate = await Coordinates.create(latitude, longitude, userId);
             return newCoordinate;
         } catch (error) {
             throw new Error(`Error creating coordinate: ${error.message}`);

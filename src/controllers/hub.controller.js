@@ -1,15 +1,13 @@
-const Hub = require('../models/Hub');
+const { Hub } = require('../models/Hub');
 const HubService = require('../services/hub.service');
 
 class HubController {
     constructor() {
     }
-
     async createHub(req, res) {
         try {
-            const { id, name, badge, openingHour, closingHour, mapCoordinates, location, rating, phone, avatar, about, coordId, ownerId } = req.body;
-            const newHub = new Hub(id, name, badge, openingHour, closingHour, mapCoordinates, location, rating, phone, avatar, about, coordId, ownerId);
-            await HubService.createHub(newHub);
+            const { name, badge, openingHour, closingHour, location, rating, phone, avatar, logo, about, coordId, ownerId } = req.body;
+            const newHub = await HubService.createHub(name, badge, openingHour, closingHour, location, rating, phone, avatar, logo, about, coordId, ownerId);
             return res.status(201).json(newHub);
         }
         catch (error) {

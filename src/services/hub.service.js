@@ -1,19 +1,27 @@
 const { HubAttendees } = require('../data-access/HubAttendees');
 const { Hubs } = require('../data-access/Hubs');
 const { HubStations } = require('../data-access/HubStations');
-const Hub = require('../models/hub');
 const userService = require('./user.service');
 const stationService = require('./station.service');
+const { Hub } = require('../models/Hub');
+const coordinateService = require('./coordinate.service');
+
 
 class HubService {
     constructor() {
     }
-
-    async createHub({ name, lvl, avatar, avatarBg, coordId }) {
+    async createHub(name, badge, openingHour, closingHour, location, rating, phone, avatar, logo, about, coordId, ownerId) {
         try {
-            const newHub = new Hub(name, lvl, avatar, avatarBg, coordId);
-            await Hubs.create(newHub);
-            return newHub;
+            const mapCoordinates = [20, 30]
+            const location = 'https://maps.app.goo.gl/gNNFXKJFURuYCCfz7'
+            const rating = 4.4
+            avatar = 'castle'
+            const newHub = new Hub(name, badge, openingHour, closingHour, mapCoordinates, location, rating, phone, avatar, logo, about, coordId, ownerId, [], []);
+            const hubResponse = await Hubs.create(newHub);
+            if (hubResponse) {
+                await coordinateService.createHubCoordinate(mapCoordinates[0], mapCoordinates[1], hubResponse.id)
+            }
+            return hubResponse;
         } catch (error) {
             throw new Error(`Error creating hub: ${error.message}`);
         }
