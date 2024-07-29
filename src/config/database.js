@@ -20,6 +20,7 @@ const { setRelationships } = require('../data-access/Relationships.js');
 const { loadBadges, loadUsersAndFriends, loadHubsData, loadCoordinates } = require('../data-access/DataLoader.js');
 const { HubAttendees } = require('../data-access/HubAttendees');
 const { HubStations } = require('../data-access/HubStations');
+const { Chats } = require('../data-access/Chats.js');
 
 module.exports = { dbSync };
 
@@ -33,6 +34,7 @@ async function syncTables() {
             await Hubs.sync();
             await Stations.sync();
             await Users.sync();
+            await Chats.sync();
             await UserFriends.sync();
             await HubAttendees.sync();
             await HubStations.sync();

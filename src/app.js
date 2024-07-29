@@ -7,6 +7,7 @@ const coordinateRoutes = require('./routes/coordinate.route');
 const stationRoutes = require('./routes/station.route');
 const badgeRoutes = require('./routes/badge.route');
 const authRoutes = require('./routes/auth.route');
+const chatsRoutes = require('./routes/chat.route');
 const bodyParser = require("body-parser");
 const cors = require('cors');
 dotenv.config();
@@ -21,6 +22,7 @@ app.use('/api/coordinates', coordinateRoutes);
 app.use('/api/stations', stationRoutes);
 app.use('/api/badges', badgeRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/chats', chatsRoutes);
 
 const main = async () => {
   await dbSync();
