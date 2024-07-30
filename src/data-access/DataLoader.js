@@ -47,7 +47,8 @@ async function loadUsersAndFriends() {
             "badges": ["fire"],
             "password": "12345",
             "username": "MATAN2008",
-            "role": "admin"
+            "role": "admin",
+            'about': 'Hi its me!!'
         },
         "2": {
             "name": "Benthehero1",
@@ -58,7 +59,8 @@ async function loadUsersAndFriends() {
             "badges": [],
             "password": "12345",
             "username": "Benthehero1",
-            "role": "user"
+            "role": "user",
+            'about': 'Hi its me!!'
         },
         "3": {
             "name": "Gandalf2",
@@ -69,7 +71,8 @@ async function loadUsersAndFriends() {
             "badges": [],
             "password": "12345",
             "username": "Gandalf2",
-            "role": "user"
+            "role": "user",
+            'about': 'Hi its me!!'
 
 
         },
@@ -82,7 +85,8 @@ async function loadUsersAndFriends() {
             "badges": [],
             "password": "12345",
             "username": "Jessy2",
-            "role": "user"
+            "role": "user",
+            'about': 'Hi its me!!'
 
         },
         "5": {
@@ -94,7 +98,8 @@ async function loadUsersAndFriends() {
             "badges": [],
             "password": "12345",
             "username": "Poopo",
-            "role": "user"
+            "role": "user",
+            'about': 'Hi its me!!'
 
         }
     }
@@ -109,6 +114,7 @@ async function loadUsersAndFriends() {
                 username: user.username,
                 password: user.password,
                 role: user.role,
+                about: user.about,
             });
             for (const badgeName of user.badges) {
                 const badge = await Badges.findOne({

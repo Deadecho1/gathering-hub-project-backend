@@ -9,7 +9,7 @@ class UserService {
 
     async updateUser(userToUpdate, userReference) {
         try {
-            await userReference.update(userToUpdate);
+            return await userReference.update(userToUpdate);
         } catch (error) {
             throw new Error(`Error updating user: ${error.message}`);
         }
@@ -104,6 +104,17 @@ class UserService {
             throw new Error(`Error finding badges: ${error.message}`);
         }
     }
+    async addFriend(userId, friendId) {
+        try {
+            return await UserFriends.create({
+                userId: parseInt(userId),
+                friendId: friendId,
+            });
+        } catch (error) {
+            throw new Error(`Error finding friends: ${error.message}`);
+        }
+    }
+
 
 }
 

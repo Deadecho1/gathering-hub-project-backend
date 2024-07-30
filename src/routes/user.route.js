@@ -9,5 +9,7 @@ userRouter.put('/:userId', UserController.updateUser);
 
 userRouter.get('/:userId', UserController.findUserById);
 
+userRouter.post('/add', UserController.addFriend);
+
 
 module.exports = userRouter;

@@ -12,11 +12,10 @@ class UserController {
             if (!userReference) {
                 return res.status(404).json({ error: 'User not found' });
             }
-            const { name, lvl, avatar, avatarBg, coordId } = req.body;
-            const userToUpdate = { name, lvl, avatar, avatarBg, coordId };
-            await UserService.updateUser(userToUpdate, userReference);
-
-            return res.status(200).json(userToUpdate);
+            const { name, lvl, avatar, avatarBg, coordId, about } = req.body;
+            const userToUpdate = { name, lvl, avatar, avatarBg, coordId, about };
+            const user = await UserService.updateUser(userToUpdate, userReference);
+            return res.status(200).json(user);
         }
 
         catch (error) {
@@ -48,6 +47,16 @@ class UserController {
             return res.status(200).json(users);
         } catch (error) {
             return res.status(500).json({ error: `Error finding users: ${error.message}` });
+        }
+    }
+    async addFriend(req, res) {
+        try {
+            const { userId, friendId } = req.body;
+            const userFriend = await UserService.addFriend(userId, friendId);
+
+            return res.status(200).json(userFriend);
+        } catch (error) {
+            return res.status(500).json({ error: `Error adding friend: ${error.message}` });
         }
     }
 }

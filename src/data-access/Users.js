@@ -44,6 +44,10 @@ const Users = sequelizeInit.define('Users', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    about: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
 }, {
     tableName: 'Users',
     timestamps: false
