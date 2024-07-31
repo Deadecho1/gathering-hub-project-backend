@@ -48,7 +48,7 @@ async function loadUsersAndFriends() {
             "password": "12345",
             "username": "MATAN2008",
             "role": "admin",
-            'about': 'Hi its me!!'
+            'about': 'Hi its me!!',
         },
         "2": {
             "name": "Benthehero1",
@@ -150,8 +150,8 @@ async function loadHubsData() {
         "1": {
             "name": "Crispy Shnitzel",
             "badge": "fire",
-            "openingHour": "1200",
-            "closingHour": "0000",
+            "openingHour": "12:00",
+            "closingHour": "00:00",
             "mapCoordinates": [32.07509444461784, 34.774994205870584],
             "location": "Shnitzel Street 1",
             "rating": 3,
@@ -184,13 +184,18 @@ async function loadHubsData() {
                     "players": []
                 }
             ],
-            "about": "This is Crispy Shnitzel."
+            "about": "This is Crispy Shnitzel.",
+            'locationUrl': 'https://maps.app.goo.gl/vgazLpGbnCUDUEW47',
+            'websiteUrl': 'https://www.loullie.com/',
+            'rating': 4.3,
+            'reviews': 1555
+
         },
         "2": {
             "name": "Burgery",
             "badge": "flower",
-            "openingHour": "1400",
-            "closingHour": "0000",
+            "openingHour": "14:00",
+            "closingHour": "00:00",
             "mapCoordinates": [32.07143510946054, 34.81921554660643],
             "location": "Somewhere Street 2",
             "rating": 4,
@@ -224,12 +229,17 @@ async function loadHubsData() {
                 }
             ],
             "about": "This is Burgery."
+            ,
+            'locationUrl': 'https://maps.app.goo.gl/qiHUJyjAM8yfHMsP8',
+            'websiteUrl': 'https://www.emeshtlv.co.il/',
+            'rating': 4.4,
+            'reviews': 2104
         },
         "3": {
             "name": "Tasty Food",
             "badge": "sun",
-            "openingHour": "0800",
-            "closingHour": "2100",
+            "openingHour": "08:00",
+            "closingHour": "21:00",
             "mapCoordinates": [32.07143510946054, 35],
             "location": "Somewhere Street 3",
             "rating": 4,
@@ -262,13 +272,17 @@ async function loadHubsData() {
                     "players": []
                 }
             ],
-            "about": "This is Tasty Food."
+            "about": "This is Tasty Food.",
+            'locationUrl': 'https://maps.app.goo.gl/hBdY2enMjv3jBs4S8',
+            'websiteUrl': 'https://www.cappellatlv.com/',
+            'rating': 4.4,
+            'reviews': 490
         },
         "4": {
             "name": "Level Up",
             "badge": "coin",
-            "openingHour": "1200",
-            "closingHour": "2130",
+            "openingHour": "12:00",
+            "closingHour": "21:30",
             "mapCoordinates": [32.06321492675298, 34.78372421163784],
             "location": "Somewhere Street 4",
             "rating": 4,
@@ -338,13 +352,17 @@ async function loadHubsData() {
                     "players": []
                 }
             ],
-            "about": "This is Level Up."
+            "about": "This is Level Up.",
+            'locationUrl': 'https://maps.app.goo.gl/SxST8Az5fc762AuaA',
+            'websiteUrl': 'https://leveluptlv.com/',
+            'rating': 4.5,
+            'reviews': 1281
         },
         "5": {
             "name": "Parisis",
             "badge": "heart",
-            "openingHour": "1200",
-            "closingHour": "2200",
+            "openingHour": "12:00",
+            "closingHour": "22:00",
             "mapCoordinates": [33.06321492675298, 34.78372421163784],
             "location": "Somewhere Street 5",
             "rating": 4,
@@ -377,7 +395,11 @@ async function loadHubsData() {
                     "players": []
                 }
             ],
-            "about": "This is Parisis."
+            "about": "This is Parisis.",
+            'locationUrl': 'https://maps.app.goo.gl/j7wy9Gyn9WbCztAy6',
+            'websiteUrl': 'https://ontopo.com/he/il/page/89521827?source=google',
+            'rating': 4.0,
+            'reviews': 1287
         }
     };
     try {
@@ -386,15 +408,18 @@ async function loadHubsData() {
                 id: parseInt(id),
                 name: hub.name,
                 badge: hub.badge,
-                openingHour: parseInt(hub.openingHour),
-                closingHour: parseInt(hub.closingHour),
+                openingHour: hub.openingHour,
+                closingHour: hub.closingHour,
                 mapCoordinates: hub.mapCoordinates,
                 location: hub.location,
                 rating: hub.rating,
                 phone: hub.phone,
                 avatar: hub.avatar,
                 about: hub.about,
-                ownerId: 1
+                ownerId: 1,
+                locationUrl: hub.locationUrl,
+                websiteUrl: hub.websiteUrl,
+                reviews: hub.reviews,
             });
 
             for (const hubStation of hub.stations) {

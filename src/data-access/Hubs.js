@@ -69,7 +69,19 @@ const Hubs = sequelizeInit.define('Hubs', {
             model: 'Users',
             key: 'id',
         }
-    }
+    },
+    locationUrl: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    reviews: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    websiteUrl: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
 }, {
     tableName: 'Hubs',
     timestamps: false
