@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const { sequelizeInit } = require('../config/database');
 
 
-const Chats = sequelizeInit.define('Chats', {
+const Chats = sequelizeInit.define('tbl_2_chats', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -17,7 +17,7 @@ const Chats = sequelizeInit.define('Chats', {
         allowNull: false
     }
 }, {
-    tableName: 'Chats',
+    tableName: 'tbl_2_chats',
     timestamps: false
 });
 

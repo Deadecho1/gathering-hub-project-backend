@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const { sequelizeInit } = require('../config/database');
 
 
-const UserBadges = sequelizeInit.define('UserBadges', {
+const UserBadges = sequelizeInit.define('tbl_9_user_badges', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -17,7 +17,7 @@ const UserBadges = sequelizeInit.define('UserBadges', {
         allowNull: false
     }
 }, {
-    tableName: 'UserBadges',
+    tableName: 'tbl_9_user_badges',
     timestamps: false
 });
 module.exports = { UserBadges };

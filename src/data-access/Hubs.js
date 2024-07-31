@@ -4,7 +4,7 @@ const { sequelizeInit } = require('../config/database');
 const { Coordinates } = require('./Coordinates');
 
 
-const Hubs = sequelizeInit.define('Hubs', {
+const Hubs = sequelizeInit.define('tbl_5_hubs', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -58,7 +58,7 @@ const Hubs = sequelizeInit.define('Hubs', {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
-            model: 'Coordinates',
+            model: 'tbl_3_coordinates',
             key: 'id',
         }
     },
@@ -66,7 +66,7 @@ const Hubs = sequelizeInit.define('Hubs', {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'Users',
+            model: 'tbl_11_users',
             key: 'id',
         }
     },
@@ -83,7 +83,7 @@ const Hubs = sequelizeInit.define('Hubs', {
         allowNull: true
     },
 }, {
-    tableName: 'Hubs',
+    tableName: 'tbl_5_hubs',
     timestamps: false
 });
 

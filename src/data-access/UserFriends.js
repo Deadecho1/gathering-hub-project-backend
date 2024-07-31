@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const { sequelizeInit } = require('../config/database');
 
-const UserFriends = sequelizeInit.define('UserFriends', {
+const UserFriends = sequelizeInit.define('tbl_10_user_friends', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -16,7 +16,7 @@ const UserFriends = sequelizeInit.define('UserFriends', {
         allowNull: false
     }
 }, {
-    tableName: 'UserFriends',
+    tableName: 'tbl_10_user_friends',
     timestamps: false
 });
 module.exports = { UserFriends };

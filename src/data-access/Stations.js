@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 
 const { sequelizeInit } = require('../config/database');
 
-const Stations = sequelizeInit.define('Stations', {
+const Stations = sequelizeInit.define('tbl_8_stations', {
     stationName: {
         type: DataTypes.STRING,
     },
@@ -23,7 +23,7 @@ const Stations = sequelizeInit.define('Stations', {
         allowNull: false
     },
 }, {
-    tableName: 'Stations',
+    tableName: 'tbl_8_stations',
     timestamps: false
 });
 

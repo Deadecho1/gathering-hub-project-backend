@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const { sequelizeInit } = require('../config/database');
 
 
-const Badges = sequelizeInit.define('Badges', {
+const Badges = sequelizeInit.define('tbl_1_badges', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -13,7 +13,7 @@ const Badges = sequelizeInit.define('Badges', {
         allowNull: false
     }
 }, {
-    tableName: 'Badges',
+    tableName: 'tbl_1_badges',
     timestamps: false
 });
 

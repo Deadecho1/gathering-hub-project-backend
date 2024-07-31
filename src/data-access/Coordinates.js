@@ -1,19 +1,19 @@
 const { DataTypes, Sequelize } = require('sequelize');
 const { sequelizeInit } = require('../config/database');
 
-const Coordinates = sequelizeInit.define('Coordinates', {
+const Coordinates = sequelizeInit.define('tbl_3_coordinates', {
     latitude: {
-        type: DataTypes.DECIMAL(10, 6), 
+        type: DataTypes.DECIMAL(10, 6),
         allowNull: false,
     },
     longitude: {
-        type: DataTypes.DECIMAL(10, 6), 
+        type: DataTypes.DECIMAL(10, 6),
         allowNull: false,
     },
 }, {
-    tableName: 'Coordinates',
+    tableName: 'tbl_3_coordinates',
     timestamps: false
 });
 
 
-module.exports = { Coordinates};
+module.exports = { Coordinates };

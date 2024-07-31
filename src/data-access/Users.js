@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 
 const { sequelizeInit } = require('../config/database');
 
-const Users = sequelizeInit.define('Users', {
+const Users = sequelizeInit.define('tbl_11_users', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -32,7 +32,7 @@ const Users = sequelizeInit.define('Users', {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
-            model: 'Coordinates',
+            model: 'tbl_3_coordinates',
             key: 'id',
         }
     },
@@ -49,7 +49,7 @@ const Users = sequelizeInit.define('Users', {
         allowNull: true
     },
 }, {
-    tableName: 'Users',
+    tableName: 'tbl_11_users',
     timestamps: false
 });
 module.exports = { Users }
