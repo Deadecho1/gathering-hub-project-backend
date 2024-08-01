@@ -32,7 +32,7 @@ const Users = sequelizeInit.define('tbl_114_users', {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
-            model: 'Coordinates',
+            model: 'tbl_114_coordinates',
             key: 'id',
         }
     },

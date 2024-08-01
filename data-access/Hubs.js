@@ -58,7 +58,7 @@ const Hubs = sequelizeInit.define('tbl_114_hubs', {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
-            model: 'Coordinates',
+            model: 'tbl_114_coordinates',
             key: 'id',
         }
     },
@@ -66,7 +66,7 @@ const Hubs = sequelizeInit.define('tbl_114_hubs', {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'Users',
+            model: 'tbl_114_users',
             key: 'id',
         }
     },
