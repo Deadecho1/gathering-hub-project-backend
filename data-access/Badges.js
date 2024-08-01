@@ -1,21 +1,20 @@
 const { DataTypes } = require('sequelize');
 const { sequelizeInit } = require('../config/database');
 
-const HubStations = sequelizeInit.define('tbl_6_hub_stations', {
+
+const Badges = sequelizeInit.define('tbl_114_badges', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    hubId: {
-        type: DataTypes.INTEGER,
+    name: {
+        type: DataTypes.STRING,
         allowNull: false
-    },
-    stationId: {
-        type: DataTypes.INTEGER,
     }
 }, {
-    tableName: 'tbl_6_hub_stations',
+    tableName: 'tbl_114_badges',
     timestamps: false
 });
-module.exports = { HubStations };
+
+module.exports = { Badges };

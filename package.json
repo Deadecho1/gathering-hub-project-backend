@@ -4,8 +4,8 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon --watch 'src/**/*.js' --exec 'node' src/app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "dependencies": {
     "awilix": "^10.0.2",

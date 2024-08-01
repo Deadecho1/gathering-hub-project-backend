@@ -1,24 +1,21 @@
 const { DataTypes } = require('sequelize');
 const { sequelizeInit } = require('../config/database');
 
-
-const Chats = sequelizeInit.define('tbl_2_chats', {
+const HubStations = sequelizeInit.define('tbl_114_hub_stations', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    message: {
-        type: DataTypes.STRING,
+    hubId: {
+        type: DataTypes.INTEGER,
         allowNull: false
     },
-    username: {
-        type: DataTypes.STRING,
-        allowNull: false
+    stationId: {
+        type: DataTypes.INTEGER,
     }
 }, {
-    tableName: 'tbl_2_chats',
+    tableName: 'tbl_114_hub_stations',
     timestamps: false
 });
-
-module.exports = { Chats };
+module.exports = { HubStations };

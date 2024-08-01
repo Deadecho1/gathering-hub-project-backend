@@ -1,7 +1,8 @@
 const { DataTypes } = require('sequelize');
 const { sequelizeInit } = require('../config/database');
 
-const UserFriends = sequelizeInit.define('tbl_10_user_friends', {
+
+const UserBadges = sequelizeInit.define('tbl_114_user_badges', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -11,12 +12,12 @@ const UserFriends = sequelizeInit.define('tbl_10_user_friends', {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    friendId: {
+    badgeId: {
         type: DataTypes.INTEGER,
         allowNull: false
     }
 }, {
-    tableName: 'tbl_10_user_friends',
+    tableName: 'tbl_114_user_badges',
     timestamps: false
 });
-module.exports = { UserFriends };
+module.exports = { UserBadges };

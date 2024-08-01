@@ -1,6 +1,6 @@
 const express = require("express");
 const dotenv = require('dotenv');
-const { dbSync } = require('./config/database');
+const { dbSync } = require("./config/database");
 const userRoutes = require('./routes/user.route');
 const hubRoutes = require('./routes/hub.route');
 const coordinateRoutes = require('./routes/coordinate.route');

@@ -1,7 +1,7 @@
 const { DataTypes, Sequelize } = require('sequelize');
 const { sequelizeInit } = require('../config/database');
 
-const Coordinates = sequelizeInit.define('tbl_3_coordinates', {
+const Coordinates = sequelizeInit.define('tbl_114_coordinates', {
     latitude: {
         type: DataTypes.DECIMAL(10, 6),
         allowNull: false,
@@ -11,7 +11,7 @@ const Coordinates = sequelizeInit.define('tbl_3_coordinates', {
         allowNull: false,
     },
 }, {
-    tableName: 'tbl_3_coordinates',
+    tableName: 'tbl_114_coordinates',
     timestamps: false
 });
 
