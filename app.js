@@ -14,7 +14,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors());
-const port = 3000;
+const port = process.env.PORT || 8080;
 app.use(bodyParser.json());
 app.use('/api/users', userRoutes);
 app.use('/api/hubs', hubRoutes);
