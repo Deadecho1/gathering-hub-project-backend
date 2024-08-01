@@ -498,9 +498,12 @@ async function loadCoordinates() {
             const { latitude, longitude } = userCoordinates[userId];
             const coordinates = await Coordinates.create({ latitude, longitude });
             const user = await Users.findByPk(parseInt(userId));
+            console.log("Coords created")
             if (user) {
                 await user.update({ coordId: coordinates.id });
                 await coordinates.update({ UserId: user.id });
+                console.log("Coords updated")
+                console.log(coordinates)
             } else {
                 console.warn(`User with ID ${userId} not found. Skipping coordinates.`);
             }
