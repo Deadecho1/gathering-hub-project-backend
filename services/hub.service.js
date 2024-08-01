@@ -13,10 +13,12 @@ class HubService {
     async createHub(name, badge, openingHour, closingHour, location, rating, phone, avatar, logo, about, coordId, ownerId) {
         try {
             const mapCoordinates = [20, 30]
-            const location = 'https://maps.app.goo.gl/gNNFXKJFURuYCCfz7'
-            const rating = 4.4
+            const locationUrl = 'https://maps.app.goo.gl/gNNFXKJFURuYCCfz7'
+            const rating = 4.4;
+            const reviews = 1020;
+            const websiteUrl = ' https://www.tripadvisor.com/';
             avatar = 'castle'
-            const newHub = new Hub(name, badge, openingHour, closingHour, mapCoordinates, location, rating, phone, avatar, logo, about, coordId, ownerId, [], []);
+            const newHub = new Hub(name, badge, openingHour, closingHour, mapCoordinates, location, rating, phone, avatar, logo, about, coordId, ownerId, [], [], locationUrl, websiteUrl, reviews);
             const hubResponse = await Hubs.create(newHub);
             if (hubResponse) {
                 await coordinateService.createHubCoordinate(mapCoordinates[0], mapCoordinates[1], hubResponse.id)

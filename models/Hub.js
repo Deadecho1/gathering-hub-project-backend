@@ -1,6 +1,5 @@
 class Hub {
-    constructor(name, badge, openingHour, closingHour, mapCoordinates, location, rating, phone, avatar, logo, about,
-        coordId, ownerId, attendees, stations, locationUrl, websiteUrl, reviews) {
+    constructor(name, badge, openingHour, closingHour, mapCoordinates, location, rating, phone, avatar, logo, about, coordId, ownerId, attendees, stations, locationUrl, websiteUrl, reviews) {
         this.name = name;
         this.badge = badge;
         this.openingHour = openingHour;
