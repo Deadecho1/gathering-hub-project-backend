@@ -2,6 +2,7 @@ const { StationPlayers } = require('../data-access/StationPlayers');
 const { Stations } = require('../data-access/Stations');
 const userService = require('./user.service');
 const { Station } = require('../models/Station');
+const { HubStations } = require('../data-access/HubStations');
 
 class StationService {
     constructor() {
@@ -10,8 +11,12 @@ class StationService {
     async createStation(stationId, platform, game, maxPlayers, currPlayers, players, hubId) {
         try {
             const newStation = new Station(stationId, platform, game, maxPlayers, currPlayers, players, hubId);
-            await Stations.create(newStation);
-            return newStation;
+            const station = await Stations.create(newStation);
+            await HubStations.create({
+                hubId: parseInt(hubId),
+                stationId: station.id
+            })
+            return station;
         } catch (error) {
             throw new Error(`Error creating station: ${error.message}`);
         }
