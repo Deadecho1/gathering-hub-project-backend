@@ -90,21 +90,26 @@ class HubService {
         }
     }
     async loadStationsToHub(hubToFill) {
-        var hubAttendees = await HubStations.findAll({
-            where: {
-                hubId: hubToFill.id
-            }
-        });
-        hubToFill.dataValues.stations = [];
+        try {
+            var hubAttendees = await HubStations.findAll({
+                where: {
+                    hubId: hubToFill.id
+                }
+            });
+            hubToFill.dataValues.stations = [];
 
-        for (let stationIndex = 0; stationIndex < hubAttendees.length; stationIndex++) {
-            const hubStation = hubAttendees[stationIndex];
-            const station = await stationService.findStationById(hubStation.stationId)
-            if (station) {
-                hubToFill.dataValues.stations.push(station)
+            for (let stationIndex = 0; stationIndex < hubAttendees.length; stationIndex++) {
+                const hubStation = hubAttendees[stationIndex];
+                const station = await stationService.findStationById(hubStation.stationId)
+                if (station) {
+                    hubToFill.dataValues.stations.push(station)
 
+                }
             }
+        } catch (error) {
+            throw new Error(`Error loading stations: ${error.message}`);
         }
+
     }
 }
 
