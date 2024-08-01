@@ -1,6 +1,6 @@
 const { Op } = require('sequelize');
 const { Coordinates } = require('../data-access/Coordinates');
-const { Coordinate } = require('../models/coordinate');
+const { Coordinate } = require('../models/Coordinate');
 
 
 class CoordinateService {
