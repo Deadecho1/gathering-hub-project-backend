@@ -96,13 +96,18 @@ class HubService {
                     hubId: hubToFill.id
                 }
             });
+            console.log(hubAttendees)
+            console.log(hubToFill)
             hubToFill.dataValues.stations = [];
 
             for (let stationIndex = 0; stationIndex < hubAttendees.length; stationIndex++) {
                 const hubStation = hubAttendees[stationIndex];
+                console.log(hubStation)
                 const station = await stationService.findStationById(hubStation.stationId)
+                console.log(station)
                 if (station) {
                     hubToFill.dataValues.stations.push(station)
+                    console.log(hubToFill.dataValues.stations)
 
                 }
             }
