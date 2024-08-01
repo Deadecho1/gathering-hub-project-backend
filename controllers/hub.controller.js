@@ -7,8 +7,8 @@ class HubController {
     }
     async createHub(req, res) {
         try {
-            const { name, badge, openingHour, closingHour, location, rating, phone, avatar, logo, about, coordId, ownerId } = req.body;
-            const newHub = await HubService.createHub(name, badge, openingHour, closingHour, location, rating, phone, avatar, logo, about, coordId, ownerId);
+            const { name, badge, openingHour, closingHour, address, rating, phone, avatar, logo, about, coordId, ownerId } = req.body;
+            const newHub = await HubService.createHub(name, badge, openingHour, closingHour, address, rating, phone, avatar, logo, about, coordId, ownerId);
             return res.status(201).json(newHub);
         }
         catch (error) {
