@@ -89,7 +89,7 @@ class CoordinateService {
         try {
             const coordinates = await Coordinates.findAll({
                 where: {
-                    userId: {
+                    UserId: {
                         [Op.not]: null
                     }
                 }
@@ -104,7 +104,7 @@ class CoordinateService {
         try {
             const coordinates = await Coordinates.findAll({
                 where: {
-                    hubId: {
+                    HubId: {
                         [Op.not]: null
                     }
                 }
