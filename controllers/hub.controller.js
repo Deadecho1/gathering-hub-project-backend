@@ -1,4 +1,5 @@
 const { Hub } = require('../models/Hub');
+const coordinateService = require('../services/coordinate.service');
 const HubService = require('../services/hub.service');
 
 class HubController {
@@ -49,6 +50,7 @@ class HubController {
                 return res.status(404).json({ error: 'Hub not found' });
             }
             hubReference.destroy();
+            await coordinateService.deleteHubCoordinate(hubId);
             return res.status(204).send();
         }
 

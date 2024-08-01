@@ -34,17 +34,7 @@ class CoordinateService {
         }
     }
 
-    async deleteCoordinate(coordinateId) {
-        try {
-            const coordinate = await Coordinates.findOne(coordinateId);
-            if (!coordinate) {
-                throw new Error('Coordinate not found');
-            }
-            await coordinate.destroy();
-        } catch (error) {
-            throw new Error(`Error deleting coordinate: ${error.message}`);
-        }
-    }
+
     async findCoordinateById(coordinateId) {
         try {
             const coordinate = await Coordinates.findByPk(coordinateId)
@@ -60,7 +50,7 @@ class CoordinateService {
         try {
             const coordinate = await Coordinates.findOne({
                 where: {
-                    userId: userId
+                    tbl114UserId: userId
                 }
             });
             if (!coordinate) {
@@ -75,7 +65,7 @@ class CoordinateService {
         try {
             const coordinate = await Coordinates.findOne({
                 where: {
-                    hubId: hubId
+                    tbl114HubId: hubId
                 }
             }); if (!coordinate) {
                 throw new Error('Coordinate not found');
@@ -113,6 +103,17 @@ class CoordinateService {
             return coordinates;
         } catch (error) {
             throw new Error(`Error finding coordinate: ${error.message}`);
+        }
+    }
+    async deleteHubCoordinate(hubId) {
+        try {
+            const hubCoords = await this.findCoordinateByHubId(hubId);
+            if (!hubCoords) {
+                throw new Error('hubCoords not found');
+            }
+            await hubCoords.destroy();
+        } catch (error) {
+            throw new Error(`Error deleting hubCoords: ${error.message}`);
         }
     }
 }
