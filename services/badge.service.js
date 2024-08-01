@@ -1,6 +1,6 @@
 
 const { Badges } = require('../data-access/Badges');
-const Badge = require('../models/badge');
+const Badge = require('../models/Badge');
 
 class BadgeService {
     constructor() {

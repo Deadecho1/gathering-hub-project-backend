@@ -1,5 +1,5 @@
 const { Users } = require("../data-access/Users");
-const { User } = require("../models/user");
+const { User } = require("../models/User");
 const userService = require("./user.service");
 
 
