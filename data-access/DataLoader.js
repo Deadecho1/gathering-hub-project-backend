@@ -501,7 +501,7 @@ async function loadCoordinates() {
             console.log("Coords created")
             if (user) {
                 await user.update({ coordId: coordinates.id });
-                await coordinates.update({ UserId: user.id });
+                await coordinates.update({ tbl114UserId: user.id });
                 console.log("Coords updated")
                 console.log(coordinates)
             } else {
@@ -514,7 +514,7 @@ async function loadCoordinates() {
             const hub = await Hubs.findByPk(parseInt(hubId));
             if (hub) {
                 await hub.update({ coordId: coordinates.id });
-                await coordinates.update({ HubId: hub.id });
+                await coordinates.update({ tbl114HubId: hub.id });
 
 
             } else {
